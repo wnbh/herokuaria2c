@@ -22,6 +22,9 @@ server.on('upgrade', (req, socket, head) => {
 	proxy.ws(req, socket, head)
 })
 
+//Import Bootstrap CSS
+app.use(express.static(__dirname + '/bootstrap'));
+
 // Handle normal http traffic
 app.use('/jsonrpc', (req, res) => {
 	req.pipe(request('http://localhost:6800/jsonrpc')).pipe(res)
@@ -35,10 +38,24 @@ app.use(
 app.use('/ariang', express.static(__dirname + '/ariang'))
 app.get('/', (req, res) => {
 	res.send(`
-<label for="secret">Enter your aria2 secret:</label>
-<input id="secret" type="text">
-<button id="panel">Go to AriaNg panel</button>
-<button id="downloads">View downloaded files</button>
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" type="text/css" href="../bootstrap.min.css" />
+<link rel="stylesheet" type="text/css" href="../bootstrap.css" />
+<link rel="stylesheet" type="text/css" href="../signin.css" />
+</head>
+<body class="text-center">
+<form class="form-signin">
+<img class="mb-4" src="../cloud-download-alt-solid.svg" alt="logo" width="72" height="72">
+<h1 class="h3 mb-3 font-weight-normal">Aria2C Menu</h1>
+<label for="secret" class="sr-only">aria2c Password</label>
+<input type="password" id="secret" class="form-control">
+<hr style="border: none">
+<button id="panel" class="btn btn-lg btn-primary btn-block">Sign in</button>
+<button id="downloads" class="btn btn-lg btn-primary btn-block">Files</button>
+<p class="mt-5 mb-3 text-muted">&copy; maple3142 &amp; bluedogerino 2020</p>
+</form>
 <script>
 panel.onclick=function(){
 	open('/ariang/#!/settings/rpc/set/wss/'+location.hostname+'/443/jsonrpc/'+btoa(secret.value),'_blank')
@@ -47,6 +64,8 @@ downloads.onclick=function(){
 	open('/downloads/'+btoa(secret.value)+'/')
 }
 </script>
+</body>
+</html>
 `)
 })
 server.listen(PORT, () => console.log(`Listening on http://localhost:${PORT}`))
