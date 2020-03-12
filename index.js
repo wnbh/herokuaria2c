@@ -41,6 +41,7 @@ app.get('/', (req, res) => {
 <!DOCTYPE html>
 <html>
 <head>
+<title>Login | Aria2C Menu</title>
 <link rel="stylesheet" type="text/css" href="../bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" href="../bootstrap.css" />
 <link rel="stylesheet" type="text/css" href="../signin.css" />
