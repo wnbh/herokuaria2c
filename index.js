@@ -48,7 +48,7 @@ app.get('/', (req, res) => {
 </head>
 <body class="text-center">
 <form class="form-signin">
-<img class="mb-4" src="../cloud-download-alt-solid.svg" alt="logo" width="72" height="72">
+<img class="mb-4" src="https://gitcdn.xyz/repo/bluedogerino/heroku-aria2c/master/bootstrap/cloud-download-alt-solid.svg" alt="logo" width="72" height="72">
 <h1 class="h3 mb-3 font-weight-normal">Aria2C Menu</h1>
 <label for="secret" class="sr-only">aria2c Password</label>
 <input type="password" id="secret" class="form-control">
