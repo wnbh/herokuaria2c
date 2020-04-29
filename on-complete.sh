@@ -20,8 +20,9 @@ fi
 echo -e "$(date +"%m/%d %H:%M:%S") ${INFO} Delete .aria2 file finish"
 echo "$(($(cat numUpload)+1))" > numUpload # Plus 1
 
+rclone -v --config="rclone.conf" copy "$topPath" "DRIVE:$RCLONE_DESTINATION/${relativePath%%/*}"
 if [[ $2 -eq 1 ]]; then # single file
-	rclone -v --config="rclone.conf" sync "$topPath" "DRIVE:$RCLONE_DESTINATION/${relativePath%%/*}"
+	rclone -v --config="rclone.conf" copy "$3" "DRIVE:$RCLONE_DESTINATION" 2>&1
 elif [[ $2 -gt 1 ]]; then # multiple file
 	rclone -v --config="rclone.conf" copy "$topPath" "DRIVE:$RCLONE_DESTINATION/${relativePath%%/*}"
 fi
