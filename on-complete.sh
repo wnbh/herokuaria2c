@@ -20,6 +20,7 @@ fi
 echo -e "$(date +"%m/%d %H:%M:%S") ${INFO} Delete .aria2 file finish"
 echo "$(($(cat numUpload)+1))" > numUpload # Plus 1
 
+rclone mkdir DRIVE:$RCLONE_DESTINATION/${relativePath%%/*}
 if [[ $2 -eq 1 ]]; then # single file
 	rclone -v --config="rclone.conf" move "$3" "DRIVE:$RCLONE_DESTINATION/${relativePath%%/*}"
 elif [[ $2 -gt 1 ]]; then # multiple file
