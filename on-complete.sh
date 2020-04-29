@@ -1,7 +1,7 @@
 #!/bin/bash
 
 filePath=$3
-downloadpath=./downloads
+downloadpath=/downloads
 relativePath=${filepath#${downloadpath}/}
 topPath=./downloads/${relativePath%%/*} # It will be the path of folder when it has multiple files, otherwise it will be the same as file path.
 
