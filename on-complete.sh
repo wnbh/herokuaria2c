@@ -1,8 +1,11 @@
 #!/bin/bash
 
 filePath=$3
-relativePath=${filepath#./downloads/}
-topPath=./downloads/${relativePath%%/*} # It will be the path of folder when it has multiple files, otherwise it will be the same as file path.
+
+filepaths=${filePath%/*} # 删除路径中的文件名
+filePaths=${filepaths#*downloads} # 删除路径中从左往右第一个downloads及其左边的路径
+
+relativePath=${filePath#*downloads/}
 
 LIGHT_GREEN_FONT_PREFIX="\033[1;32m"
 FONT_COLOR_SUFFIX="\033[0m"
@@ -20,10 +23,10 @@ fi
 echo -e "$(date +"%m/%d %H:%M:%S") ${INFO} Delete .aria2 file finish"
 echo "$(($(cat numUpload)+1))" > numUpload # Plus 1
 
-if [[ $2 -eq 1 ]]; then # single file
-	rclone -v --config="rclone.conf" copy "$3" "DRIVE:$RCLONE_DESTINATION" 2>&1	
-elif [[ $2 -gt 1 ]]; then # multiple file
-	rclone -v --config="rclone.conf" copy "$topPath" "DRIVE:$RCLONE_DESTINATION/${relativePath%%/*}"
+if [[ $2 -eq 1 ]]; then # 单文件
+	rclone -v --config="rclone.conf" move "$3" "DRIVE:$RCLONE_DESTINATION/${filePaths#*/}" 2>&1	
+elif [[ $2 -gt 1 ]]; then # 多文件
+	rclone -v --config="rclone.conf" move "$filepaths" "DRIVE:$RCLONE_DESTINATION/${relativePath%%/*}"
 fi
 
 echo "$(($(cat numUpload)-1))" > numUpload # Minus 1
