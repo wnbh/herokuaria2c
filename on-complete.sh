@@ -1,7 +1,8 @@
 #!/bin/bash
 
 filePath=$3
-filePaths=${filePath%/*}
+filepaths=${filePath%/*}
+filePaths=${filepaths#*downloads}
 relativePath=${filePath#*downloads/}
 topPath=./downloads/${relativePath%%/*} # It will be the path of folder when it has multiple files, otherwise it will be the same as file path.
 
@@ -22,7 +23,7 @@ echo -e "$(date +"%m/%d %H:%M:%S") ${INFO} Delete .aria2 file finish"
 echo "$(($(cat numUpload)+1))" > numUpload # Plus 1
 
 if [[ $2 -eq 1 ]]; then # single file
-	rclone -v --config="rclone.conf" copy "$3" "DRIVE:$RCLONE_DESTINATION/${${filePaths#*downloads}#*/}" 2>&1	
+	rclone -v --config="rclone.conf" copy "$3" "DRIVE:$RCLONE_DESTINATION/${filePaths#*/}" 2>&1	
 elif [[ $2 -gt 1 ]]; then # multiple file
 	rclone -v --config="rclone.conf" copy "$topPath" "DRIVE:$RCLONE_DESTINATION/${relativePath%%/*}"
 fi
