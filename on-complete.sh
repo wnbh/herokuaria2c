@@ -1,7 +1,7 @@
 #!/bin/bash
 
 filePath=$3
-fliepaths=${filePath%/*}
+fliePaths=${filePath%/*}
 relativePath=${filePath#*downloads/}
 topPath=./downloads/${relativePath%%/*} # It will be the path of folder when it has multiple files, otherwise it will be the same as file path.
 
