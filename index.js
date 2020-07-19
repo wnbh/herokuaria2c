@@ -12,7 +12,7 @@ const ENCODED_SECRET = Buffer.from(SECRET).toString('base64')
 const PORT = process.env.PORT || 1234
 const app = express()
 const proxy = httpProxy.createProxyServer({
-	target: 'ws://localhost:6800',
+	target: 'http://localhost:6800',
 	ws: true
 })
 const server = http.createServer(app)
