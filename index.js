@@ -13,7 +13,7 @@ const PORT = process.env.PORT || 1234
 const app = express()
 const proxy = httpProxy.createProxyServer({
 	target: 'http://localhost:6800',
-	ws: true
+	ws: false
 })
 const server = http.createServer(app)
 
