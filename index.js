@@ -78,7 +78,7 @@ if (process.env.HEROKU_APP_NAME) {
 				err ? rej(err) : res(text)
 			)
 		)
-	const APP_URL = `http://${process.env.HEROKU_APP_NAME}.herokuapp.com`
+	const APP_URL = `https://${process.env.HEROKU_APP_NAME}.herokuapp.com`
 	const preventIdling = () => {
 		request.post(
 			'http://localhost:6800/jsonrpc',
