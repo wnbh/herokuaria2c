@@ -6,9 +6,9 @@ unzip -q rclone-v1.51.0-linux-amd64.zip
 export PATH=$PWD/rclone-v1.51.0-linux-amd64:$PATH
 
 # Install aria2c static binary
-wget -q https://github.com/wnbh/aria2-static-builds/releases/download/v1.35.0/aria2-1.35.0-linux-gnu-64bit-build1.tar.bz2
-tar xf aria2-1.35.0-linux-gnu-64bit-build1.tar.bz2
-export PATH=$PWD/aria2-1.35.0-linux-gnu-64bit-build1:$PATH
+wget -q https://github.com/wnbh/aria2-builder/releases/download/1.35.0_2020.06.13/aria2-1.35.0-static-linux-amd64.tar
+tar xf aria2-1.35.0-static-linux-amd64.tar
+export PATH=$PWD/aria2-1.35.0-static-linux-amd64:$PATH
 
 # Create download folder
 mkdir -p downloads
